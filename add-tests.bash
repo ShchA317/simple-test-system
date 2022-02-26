@@ -8,19 +8,17 @@ echo "let's start adding ${quantity} tests"
 
 for ((i=1; i <= quantity; i++))
 do
-    echo "enter the ${i} test:"
-    read test
+    echo "enter the ${i} test, to finish typing, press ctrl+d:"
+    test=$(cat)
     count=$(ls -l tests/ | grep "^-" | wc -l)
     j=$(($count+1))
-    touch tests/t${j}
-    echo ${test} > tests/t${j}
+    echo "$test" | cat>tests/t${j}
     echo "test t${j} is added"
-    echo "enter answer to this test:"
-    read answer
+    echo "enter answer to this test. To finish typing, press ctrl+d:"
+    answer=$(cat)
     count=$(ls -l answers/ | grep "^-" | wc -l)
     j=$(($count+1))
-    touch answers/a${j}
-    echo ${answer} > answers/a${j}
+    echo "$answer" | cat > answers/a${j}
     echo "answer a${j} is added"
 done
 
